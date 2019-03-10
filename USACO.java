@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class USACO{
   public static void main(String[] args){
-    System.out.println("" + silver("ctravel.1.in"));
+    System.out.println("" + silver("ctravel.4.in"));
   }
   public static int bronze(String filename){
     try {
@@ -134,23 +134,28 @@ public class USACO{
         }
       }
 
-
+      //while there is time left
       while (T > 1){
+        //loops through each spot on the grid and finds a sum for each
         for (int i = 0; i < N; i++){
           for (int j = 0; j < M; j++){
             int around = 0;
             for (int z = 0; z < 4; z++){
               int r = i + moves[z][0];
               int c = j + moves[z][1];
+              //around is the sum of surrounding paths or sum of possible ways to get to a certain spot from the start
               if (r >= 0 && r < N && c >= 0 && c < M && field[r][c] != '*'){
                 around += trace[r][c];
               }
             }
             if (field[i][j] != '*'){
+              //the use of this 2D array allows us to find sums for each spot and store them
               storeSums[i][j] = around;
             }
           }
         }
+
+        //after a sum has been found for each square, values can be transferred over to trace
         for (int i = 0; i < N; i++){
           for (int j = 0; j < M; j++){
             trace[i][j] = storeSums[i][j];
@@ -159,7 +164,7 @@ public class USACO{
         T--;
       }
       //System.out.println("" + startR + ", " + startC);
-      System.out.println(testingString(trace));
+      //System.out.println(testingString(trace));
       return trace[endR][endC];
     } catch (FileNotFoundException e){
       System.out.println("Filename Not Valid");
