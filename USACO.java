@@ -123,13 +123,18 @@ public class USACO{
       };
 
       int[][] trace = new int[N][M];
+      int[][] storeSums = new int[N][M];
+
       for (int i = 0; i < 4; i++){
         int r = startR + moves[i][0];
         int c = startC + moves[i][1];
         if (r >= 0 && r < N && c >= 0 && c < M && field[r][c] != '*'){
           trace[r][c] = 1;
+          storeSums[r][c] = 1;
         }
       }
+
+
       while (T > 1){
         for (int i = 0; i < N; i++){
           for (int j = 0; j < M; j++){
@@ -142,8 +147,13 @@ public class USACO{
               }
             }
             if (field[i][j] != '*'){
-              trace[i][j] = around;
+              storeSums[i][j] = around;
             }
+          }
+        }
+        for (int i = 0; i < N; i++){
+          for (int j = 0; j < M; j++){
+            trace[i][j] = storeSums[i][j];
           }
         }
         T--;
