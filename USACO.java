@@ -21,7 +21,7 @@ public class USACO{
     int[][] elevations = new int[n.length()][a - 1 - n];
     int[][] directions;
     for (int i = 0; i < elevations.length; i++){
-      
+
     }
   }
 }
