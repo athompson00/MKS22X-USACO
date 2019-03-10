@@ -30,6 +30,31 @@ public class USACO{
         q++;
       }
 
+      int[][] around = {
+        {1,1},
+        {1,0},
+        {1, -1},
+        {0,0},
+        {0, 1},
+        {0, -1},
+        {-1, 0},
+        {-1, 1},
+        {-1, -1}
+      };
+
+      for (int i = 0; i < directions.length; i++){
+        int R = directions[i][0] - 1;
+        int C = directions[i][1] - 1;
+        int highest = 0;
+        for (int j = 0; j < 9; j++){
+          int nextR = R + around[j][0];
+          int nextC = C + around[j][1];
+          if (nextR >= 0 && nextR < elevations.length && nextC >= 0 &&
+            nextC < elevations[0].length && elevations[nextR][nextC] > highest){
+              highest = elevations[nextR][nextC];
+            }
+        }
+      }
     } catch (FileNotFoundException e){
 
     }
