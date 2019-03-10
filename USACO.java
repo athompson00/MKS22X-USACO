@@ -43,8 +43,8 @@ public class USACO{
       };
 
       for (int i = 0; i < directions.length; i++){
-        int R = directions[i][0] - 1;
-        int C = directions[i][1] - 1;
+        int R = directions[i][0];
+        int C = directions[i][1];
         int highest = 0;
         for (int j = 0; j < 9; j++){
           int nextR = R + around[j][0];
@@ -54,7 +54,7 @@ public class USACO{
               highest = elevations[nextR][nextC];
             }
         }
-        //we have the highest elevation, now we can stomp import junit.framework.TestCase;
+        //we have the highest elevation, now we can stomp
         for (int j = 0; j < directions[i][2] && highest > 0; j++){
           for (int z = 0; z < 9; z++){
             int nextR = R + around[z][0];
@@ -69,7 +69,7 @@ public class USACO{
       }
       int total = 0;
       for (int i = 0; i < elevations.length; i++){
-        for (int j = 0; j < elevations.length; j++){
+        for (int j = 0; j < elevations[0].length; j++){
           if (0 < e - elevations[i][j]){
             total += e - elevations[i][j];
           }
@@ -81,5 +81,17 @@ public class USACO{
       System.out.println("File Invalid");
     }
     return -1;
+  }
+
+  //for testing purposes
+  public static String testingString(int[][] ary){
+    String s = "";
+    for (int i = 0; i < ary.length; i++){
+      for (int j = 0; j < ary[0].length; j++){
+        s += " " + ary[i][j];
+      }
+      s += "\n";
+    }
+    return s;
   }
 }
