@@ -84,7 +84,7 @@ public class USACO{
   }
 
   //for testing purposes
-  public static String testingString(char[][] ary){
+  public static String testingString(int[][] ary){
     String s = "";
     for (int i = 0; i < ary.length; i++){
       for (int j = 0; j < ary[0].length; j++){
@@ -140,8 +140,8 @@ public class USACO{
           for (int j = 0; j < M; j++){
             int around = 0;
             for (int z = 0; z < 4; z++){
-              int r = startR + moves[z][0];
-              int c = startC + moves[z][1];
+              int r = i + moves[z][0];
+              int c = j + moves[z][1];
               if (r >= 0 && r < N && c >= 0 && c < M && field[r][c] != '*'){
                 around += trace[r][c];
               }
@@ -158,6 +158,8 @@ public class USACO{
         }
         T--;
       }
+      //System.out.println("" + startR + ", " + startC);
+      System.out.println(testingString(trace));
       return trace[endR][endC];
     } catch (FileNotFoundException e){
       System.out.println("Filename Not Valid");
