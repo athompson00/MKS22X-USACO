@@ -115,6 +115,8 @@ public class USACO{
       int endR = Integer.parseInt(traveller.next()) - 1;
       int endC = Integer.parseInt(traveller.next()) - 1;
       //System.out.println(testingString(field));
+
+      //4 possible different moves to make
       int[][] moves = {
         {1, 0},
         {-1, 0},
@@ -125,6 +127,7 @@ public class USACO{
       int[][] trace = new int[N][M];
       int[][] storeSums = new int[N][M];
 
+      //initiates the starting point of the board
       for (int i = 0; i < 4; i++){
         int r = startR + moves[i][0];
         int c = startC + moves[i][1];
@@ -162,13 +165,17 @@ public class USACO{
           }
         }
         T--;
+        //cows move once per second
       }
       //System.out.println("" + startR + ", " + startC);
       //System.out.println(testingString(trace));
+
+      //number of paths found to the end from the start
       return trace[endR][endC];
     } catch (FileNotFoundException e){
       System.out.println("Filename Not Valid");
     }
+    //if invalid file
     return -1;
   }
 }
