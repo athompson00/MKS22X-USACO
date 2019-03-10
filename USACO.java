@@ -50,14 +50,30 @@ public class USACO{
           int nextR = R + around[j][0];
           int nextC = C + around[j][1];
           if (nextR >= 0 && nextR < elevations.length && nextC >= 0 &&
-            nextC < elevations[0].length && elevations[nextR][nextC] > highest){
+              nextC < elevations[0].length && elevations[nextR][nextC] > highest){
               highest = elevations[nextR][nextC];
             }
         }
+        //we have the highest elevation, now we can stomp import junit.framework.TestCase;
+        for (int j = 0; j < directions[i][2] && highest > 0; j++){
+          for (int z = 0; z < 9; z++){
+            int nextR = R + around[j][0];
+            int nextC = C + around[j][1];
+            if (nextR >= 0 && nextR < elevations.length && nextC >= 0 &&
+                nextC < elevations[0].length && elevations[nextR][nextC] == highest){
+                elevations[nextR][nextC] -= 1;
+              }
+          }
+          highest -= 1;
+        }
+      }
+      int total = 0;
+      for (int i = 0; i < elevations.length; i++){
+        for (int j = )
       }
     } catch (FileNotFoundException e){
 
     }
-    return 1;
+    return -1;
   }
 }
