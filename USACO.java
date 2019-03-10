@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class USACO{
   public static void main(String[] args){
-    bronze("makelake.1.in");
+    System.out.println("" + bronze("makelake.1.in"));
   }
   public static int bronze(String filename){
     try {
@@ -57,8 +57,8 @@ public class USACO{
         //we have the highest elevation, now we can stomp import junit.framework.TestCase;
         for (int j = 0; j < directions[i][2] && highest > 0; j++){
           for (int z = 0; z < 9; z++){
-            int nextR = R + around[j][0];
-            int nextC = C + around[j][1];
+            int nextR = R + around[z][0];
+            int nextC = C + around[z][1];
             if (nextR >= 0 && nextR < elevations.length && nextC >= 0 &&
                 nextC < elevations[0].length && elevations[nextR][nextC] == highest){
                 elevations[nextR][nextC] -= 1;
@@ -69,10 +69,16 @@ public class USACO{
       }
       int total = 0;
       for (int i = 0; i < elevations.length; i++){
-        for (int j = )
+        for (int j = 0; j < elevations.length; j++){
+          if (0 < e - elevations[i][j]){
+            total += e - elevations[i][j];
+          }
+        }
       }
+      total = total * 72 * 72;
+      return total;
     } catch (FileNotFoundException e){
-
+      System.out.println("File Invalid");
     }
     return -1;
   }
