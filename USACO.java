@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class USACO{
   public static void main(String[] args){
-    System.out.println("" + bronze("makelake.1.in"));
+    System.out.println("" + silver("ctravel.1.in"));
   }
   public static int bronze(String filename){
     try {
@@ -84,7 +84,7 @@ public class USACO{
   }
 
   //for testing purposes
-  public static String testingString(int[][] ary){
+  public static String testingString(char[][] ary){
     String s = "";
     for (int i = 0; i < ary.length; i++){
       for (int j = 0; j < ary[0].length; j++){
@@ -93,5 +93,65 @@ public class USACO{
       s += "\n";
     }
     return s;
+  }
+
+  public static int silver(String filename){
+    try{
+      File ctravel = new File(filename);
+      Scanner traveller = new Scanner(ctravel);
+      int N = Integer.parseInt(traveller.next());
+      int M = Integer.parseInt(traveller.next());
+      int T = Integer.parseInt(traveller.next());
+      String a;
+      char[][] field = new char[N][M];
+      for (int i = 0; i < N; i++){
+        a = traveller.next();
+        for (int j = 0; j < M; j++){
+          field[i][j] = a.charAt(j);
+        }
+      }
+      int startR = Integer.parseInt(traveller.next()) - 1;
+      int startC = Integer.parseInt(traveller.next()) - 1;
+      int endR = Integer.parseInt(traveller.next()) - 1;
+      int endC = Integer.parseInt(traveller.next()) - 1;
+      //System.out.println(testingString(field));
+      int[][] moves = {
+        {1, 0},
+        {-1, 0},
+        {0, 1},
+        {0, -1}
+      };
+
+      int[][] trace = new int[N][M];
+      for (int i = 0; i < 4; i++){
+        int r = startR + moves[i][0];
+        int c = startC + moves[i][1];
+        if (r >= 0 && r < N && c >= 0 && c < M && field[r][c] != '*'){
+          trace[r][c] = 1;
+        }
+      }
+      while (T > 1){
+        for (int i = 0; i < N; i++){
+          for (int j = 0; j < M; j++){
+            int around = 0;
+            for (int z = 0; z < 4; z++){
+              int r = startR + moves[z][0];
+              int c = startC + moves[z][1];
+              if (r >= 0 && r < N && c >= 0 && c < M && field[r][c] != '*'){
+                around += trace[r][c];
+              }
+            }
+            if (field[i][j] != '*'){
+              trace[i][j] = around;
+            }
+          }
+        }
+        T--;
+      }
+      return trace[endR][endC];
+    } catch (FileNotFoundException e){
+      System.out.println("Filename Not Valid");
+    }
+    return -1;
   }
 }
